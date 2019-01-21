@@ -36,18 +36,25 @@
         </el-input>
       </el-form-item>
       <el-form-item>
-        <el-button type="primary" class="loninbtn" @click="submitForm('loginForm')">登录</el-button>
+        <el-button
+          type="primary"
+          class="loninbtn"
+          @click="submitForm('loginForm')"
+          :loading = loginForm.btnLoading
+        >登录</el-button>
       </el-form-item>
     </el-form>
   </div>
 </template>
 <script>
+
 export default {
   data () {
     return {
       loginForm: {
         user: '',
-        password: ''
+        password: '',
+        btnLoading: false
       }
     }
   },
@@ -62,8 +69,13 @@ export default {
                 message: '登陆成功',
                 position: 'bottom-right'
               })
-              // 跳转到仪表盘页面
-              this.goHome()
+              this.loginForm.btnLoading = true
+              setTimeout(()=>{
+                this.loginForm.btnLoading = false
+                // 跳转到仪表盘页面
+                this.goHome()
+              },1000)
+              
             } else {
               alert('密码错误')
             }
