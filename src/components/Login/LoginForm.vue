@@ -1,14 +1,19 @@
 <template>
   <div class="logindetail">
-    <el-form  :model="loginForm" label-width="100px">
+    <el-form
+      :model="loginForm"
+      ref="loginForm"
+      label-width="100px"
+    >
       <el-form-item
         label="用户名"
+        prop="user"
         :rules="[
                   { required: true, message: '请输入用户名', trigger: 'blur' }
                 ]"
     >
         <el-input
-          v-model="input"
+          v-model="loginForm.user"
           placeholder="用户名"
           clearable
         >
@@ -17,29 +22,53 @@
       </el-form-item>
       <el-form-item
         label="密码"
+        prop="password"
         :rules="[
                   { required: true, message: '请输入密码', trigger: 'blur' }
                 ]"
       >
         <el-input
-          v-model="input"
+          v-model="loginForm.password"
           placeholder="密码"
-          clearable
+          type="password"
         >
           <i class="iconfont icon-lock" slot="prefix"></i>
         </el-input>
       </el-form-item>
       <el-form-item>
-        <el-button type="primary" class="loninbtn">登录</el-button>
+        <el-button type="primary" class="loninbtn" @click="submitForm('loginForm')">登录</el-button>
       </el-form-item>
     </el-form>
   </div>
 </template>
 <script>
 export default {
-  name: 'LoginForm',
-  props: {
-    msg: String
+  data () {
+    return {
+      loginForm: {
+        user: '',
+        password: ''
+      }
+    }
+  },
+  methods: {
+    submitForm (formName) {
+      this.$refs[formName].validate((valid) => {
+        if (valid) {
+          if (this.loginForm.user === 'admin') {
+            if (this.loginForm.password === 'admin') {
+              alert('登陆成功')
+            } else {
+              alert('密码错误')
+            }
+          } else {
+            alert('用户名错误')
+          }
+        } else {
+          return false
+        }
+      })
+    }
   }
 }
 </script>
