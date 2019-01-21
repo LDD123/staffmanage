@@ -57,7 +57,13 @@ export default {
         if (valid) {
           if (this.loginForm.user === 'admin') {
             if (this.loginForm.password === 'admin') {
-              alert('登陆成功')
+              this.$notify({
+                type: 'success',
+                message: '登陆成功',
+                position: 'bottom-right'
+              })
+              // 跳转到仪表盘页面
+              this.goHome()
             } else {
               alert('密码错误')
             }
@@ -68,6 +74,10 @@ export default {
           return false
         }
       })
+    },
+    // 登录路由跳转
+    goHome () {
+      this.$router.push('/home')
     }
   }
 }
