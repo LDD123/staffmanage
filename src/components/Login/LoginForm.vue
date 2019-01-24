@@ -70,12 +70,11 @@ export default {
                 position: 'bottom-right'
               })
               this.loginForm.btnLoading = true
-              setTimeout(()=>{
+              setTimeout(() => {
                 this.loginForm.btnLoading = false
                 // 跳转到仪表盘页面
                 this.goHome()
-              },1000)
-              
+              }, 1000)
             } else {
               alert('密码错误')
             }

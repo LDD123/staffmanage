@@ -1,18 +1,63 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+  <el-container style="border: 1px solid #eee">
+    <el-aside >
+      <Menu/>
+    </el-aside>
+    <el-container>
+      <el-header>
+        <Head/>
+      </el-header>
+      <el-main>Main</el-main>
+      <el-footer>Footer</el-footer>
+    </el-container>
+  </el-container>
 </template>
 
 <script>
 // @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+// import HelloWorld from '@/components/HelloWorld.vue'
+import Menu from '@/components/Layout/Menu.vue'
+import Head from '@/components/Layout/Head.vue'
 
 export default {
   name: 'home',
   components: {
-    HelloWorld
+    // HelloWorld,
+    Menu,
+    Head
   }
 }
 </script>
+<style>
+  .el-header, .el-footer {
+    background-color:white;
+    color: #333;
+    text-align: left;
+    line-height: 60px;
+    padding: 0vw
+  }
+  .el-aside {
+    background-color: #D3DCE6;
+    color: #333;
+    text-align: center;
+    line-height: 60px;
+    width: fit-content !important;
+  }
+  .el-main {
+    background-color: #E9EEF3;
+    color: #333;
+    text-align: center;
+    line-height: 500px;
+    min-height: 100vh
+  }
+  body > .el-container {
+    margin-bottom: 40px;
+  }
+  .el-container:nth-child(5) .el-aside,
+  .el-container:nth-child(6) .el-aside {
+    line-height: 260px;
+  }
+  .el-container:nth-child(7) .el-aside {
+    line-height: 320px;
+  }
+</style>
