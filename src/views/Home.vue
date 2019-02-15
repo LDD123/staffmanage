@@ -8,7 +8,9 @@
         <Head/>
       </el-header>
       <el-main>Main</el-main>
-      <el-footer>Footer</el-footer>
+      <el-footer>
+        <Footer/>
+      </el-footer>
     </el-container>
   </el-container>
 </template>
@@ -18,13 +20,14 @@
 // import HelloWorld from '@/components/HelloWorld.vue'
 import Menu from '@/components/Layout/Menu.vue'
 import Head from '@/components/Layout/Head.vue'
-
+import Footer from '@/components/Layout/Footer.vue'
 export default {
   name: 'home',
   components: {
     // HelloWorld,
     Menu,
-    Head
+    Head,
+    Footer
   }
 }
 </script>
@@ -33,8 +36,11 @@ export default {
     background-color:white;
     color: #333;
     text-align: left;
-    line-height: 60px;
+    line-height: 2rem;
     padding: 0vw
+  }
+  .el-footer{
+    text-align: center;
   }
   .el-aside {
     background-color: #D3DCE6;

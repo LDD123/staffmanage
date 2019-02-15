@@ -30,9 +30,11 @@ export default {
   display: flex;
 }
 .login-form{
+  position: absolute;
   width: 500px;
-  padding-top: 15%;
-  padding-left: 25%;
+  top: 45%;
+  left: 45%;
+  transform: translate(-50%, -50%);
 }
 .login-form>h1{
   padding-left: 50%;

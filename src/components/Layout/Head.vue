@@ -8,6 +8,19 @@
         <i class="iconfont icon-outdent"></i>
       </span>
     </span>
+    <!--设置登陆之后的个人列表信息  -->
+  <span class="head-msg">
+    <el-dropdown :hide-on-click="false">
+      <span >
+        <i class="iconfont icon-user" slot="prefix"></i>admin
+      </span>
+      <el-dropdown-menu slot="dropdown">
+        <el-dropdown-item>个人中心</el-dropdown-item>
+        <el-dropdown-item>个人设置</el-dropdown-item>
+        <el-dropdown-item>退出</el-dropdown-item>
+      </el-dropdown-menu>
+    </el-dropdown>
+  </span>
   </div>
 </template>
 <script>
@@ -51,10 +64,14 @@ export default {
   text-align: center;
 }
 .head :hover{
-  background-color:#D3DCE6
+  background-color:#F9F9F9;
 }
 .icon-outdent.icon-indent{
   font-size: 3rem !important;
+}
+.head-msg{
+  float: right;
+  padding-right: 1vw;
 }
 
 </style>
