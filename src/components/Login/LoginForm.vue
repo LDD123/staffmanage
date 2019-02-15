@@ -14,7 +14,7 @@
     >
         <el-input
           v-model="loginForm.user"
-          placeholder="用户名"
+          placeholder="admin"
           clearable
         >
           <i class="iconfont icon-user" slot="prefix"></i>
@@ -29,7 +29,7 @@
       >
         <el-input
           v-model="loginForm.password"
-          placeholder="密码"
+          placeholder="admin"
           type="password"
         >
           <i class="iconfont icon-lock" slot="prefix"></i>
@@ -66,34 +66,27 @@ export default {
           let params = {}
           params.user = this.loginForm.user
           params.password = this.loginForm.password
-          // this.$axios.post('/api/login').then((res) => {
-          //       console.log(res)
-          //   })
-          let res = request({
+          request({
             url: 'api/login',
             method: 'post',
             data: params
+          }).then(response => {
+            if (response.data.loginFlag) {
+              this.$notify({
+                type: 'success',
+                message: '登陆成功',
+                position: 'bottom-right'
+              })
+              this.goHome()
+            } else {
+              this.$notify({
+                type: 'error',
+                message: '用户名或密码错误',
+                position: 'bottom-right'
+              })
+            }
+            console.log('response=>', response)
           })
-          console.log('res=>', res)
-          // if (this.loginForm.user === 'admin') {
-          //   if (this.loginForm.password === 'admin') {
-          //     this.$notify({
-          //       type: 'success',
-          //       message: '登陆成功',
-          //       position: 'bottom-right'
-          //     })
-          //     this.loginForm.btnLoading = true
-          //     setTimeout(() => {
-          //       this.loginForm.btnLoading = false
-          //       // 跳转到仪表盘页面
-          //       this.goHome()
-          //     }, 1000)
-          //   } else {
-          //     alert('密码错误')
-          //   }
-          // } else {
-          //   alert('用户名错误')
-          // }
         } else {
           return false
         }

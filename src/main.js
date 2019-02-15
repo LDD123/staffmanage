@@ -6,9 +6,6 @@ import './plugins/element.js'
 import './assets/iconfonts/iconfont.css'
 import Element from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
-// 引入axios并将其放在Vue原型链上
-import axios from 'axios'
-Vue.prototype.$axios = axios
 Vue.use(Element, { size: 'small', zIndex: 3000 })
 // import { Form, FormItem, Button, Input, Notification, Menu, Container, Header,
 //   Aside, Main,
