@@ -1,24 +1,31 @@
 import axios from 'axios'
 import { Message } from 'element-ui'
-import config from './config.js'
+import * as StorageUtils from '@/utils/StorageUtil.js'
+import configJS from './config.js'
 // import store from '@/store'
 // import { getToken } from '@/utils/auth'
 
 // create an axios instance
 const service = axios.create({
-  baseURL: config.BASE_API, // api 的 base_url
+  baseURL: configJS.BASE_API, // api 的 base_url
   timeout: 5000, // request timeout
-  headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' }
+  headers: { 'Content-Type': 'application/json' }
 })
 
 // request interceptor
 service.interceptors.request.use(
   config => {
     // Do something before request is sent
-    // if (store.getters.token) {
-    //   // 让每个请求携带token-- ['X-Token']为自定义key 请根据实际情况自行修改
-    //   config.headers['X-Token'] = getToken()
-    // }
+    let clientId = StorageUtils.getClientId()
+    let token = StorageUtils.getToken()
+    if (token) {
+      // 让每个请求携带token-- ['X-Token']为自定义key 请根据实际情况自行修改
+      config.headers[configJS.token_key] = token
+    }
+    if (clientId) {
+      // 让每个请求携带token-- ['X-Token']为自定义key 请根据实际情况自行修改
+      config.headers[configJS.clientid_key] = clientId
+    }
     return config
   },
   error => {

@@ -48,6 +48,7 @@
 </template>
 <script>
 import request from '@/utils/request'
+import * as StorageUtils from '@/utils/StorageUtil.js'
 import '@/mock/mock.js'
 export default {
   data () {
@@ -77,6 +78,10 @@ export default {
                 message: '登陆成功',
                 position: 'bottom-right'
               })
+              StorageUtils.saveToken(response.data.token)
+              StorageUtils.saveUserId(this.loginForm.user)
+              StorageUtils.saveCTime(response.data.ctime)
+              StorageUtils.saveClientId(response.data.clientId)
               this.goHome()
             } else {
               this.$notify({

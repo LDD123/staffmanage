@@ -10,14 +10,14 @@
     </span>
     <!--设置登陆之后的个人列表信息  -->
   <span class="head-msg">
-    <el-dropdown :hide-on-click="false">
+    <el-dropdown :hide-on-click="false"  @command="handleCommand">
       <span >
         <i class="iconfont icon-user" slot="prefix"></i>admin
       </span>
       <el-dropdown-menu slot="dropdown">
         <el-dropdown-item>个人中心</el-dropdown-item>
         <el-dropdown-item>个人设置</el-dropdown-item>
-        <el-dropdown-item>退出</el-dropdown-item>
+        <el-dropdown-item command="logOut">退出</el-dropdown-item>
       </el-dropdown-menu>
     </el-dropdown>
   </span>
@@ -25,6 +25,7 @@
 </template>
 <script>
 import { createNamespacedHelpers } from 'vuex'
+import * as StorageUtils from '@/utils/StorageUtil.js'
 const { mapState, mapActions } = createNamespacedHelpers('dashboard/')
 export default {
   data () {
@@ -40,14 +41,17 @@ export default {
 
   // 方法属性
   methods: {
-    // changeStatus(params){
-    //   console.log(params)
-    //   this.$store.dispatch({
-    //     type:'dashboard/changeCollapse',
-    //     isCollapse:params
-    //   })
-    // },
-    // // // 分发action中的change方法
+    handleCommand (command) {
+      if (command === 'logOut') {
+        this.logOut()
+      }
+    },
+    // 登录路由跳转
+    logOut () {
+      StorageUtils.removeAll()
+      this.$router.push('/login')
+    },
+    // 分发action中的change方法
     ...mapActions(['changeCollapse'])
 
   }

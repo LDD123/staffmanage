@@ -2,7 +2,7 @@ const dashboard = {
   namespaced: true,
   // 1、state：创建初始化状态
   state: {
-    isCollapse: true // 是否折叠菜单栏
+    isCollapse: false // 是否折叠菜单栏
   },
   // 2、getters：提供外部获取state
   getters: {
